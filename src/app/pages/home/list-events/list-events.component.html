@@ -4,16 +4,32 @@
       {{ headerDate | date: 'longDate' }}
     </div>
 
-    <div class="events-by-date">
+    <div
+      class="events-by-date"
+      fxLayout="row wrap"
+      fxLayoutAlign="start start"
+      fxLayoutGap="12px"
+    >
       <mat-card
         class="card"
         *ngFor="let event of listEvents[headerDate];"
+        [ngClass]="{'no-image': !event.images}"
+        fxFlex="0 1 calc(25% - 12px)"
+        fxFlex.lt-lg="0 1 calc(33% - 12px)"
+        fxFlex.lt-md="0 1 calc(50% - 12px)"
+        fxFlex.lt-sm="0 1 100%"
       >
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <div
+          mat-card-image
+          class="card-image"
+          *ngIf="event.images"
+          [style.background-image]="'url(' + event.images[0].sizes.full.url + ')'"
+        >
+        </div>
         <mat-card-content>
           <p class="title">{{ event.title }}</p>
-          <p class="date">{{ event.start_datetime }}</p>
-          <p class="description">{{ event.description_short }}</p>
+          <p class="date">{{ event.start_datetime | date: 'MM/dd/yyyy hh:mm aa' }}</p>
+          <p class="description" [innerHtml]="event.description_short | safeHtml"></p>
         </mat-card-content>
       </mat-card>
     </div>

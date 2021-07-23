@@ -11,7 +11,7 @@ import { IItemEvent } from './item-event.interface';
 })
 export class ListEventsComponent implements OnInit {
 
-  public listEvents: IItemEvent = {};
+  public listEvents: IItemEvent[];
   public listEventsHeaderDate: string[] = [];
 
   constructor(private listEventsService: ListEventsService) {}
@@ -22,10 +22,7 @@ export class ListEventsComponent implements OnInit {
       .subscribe((response) => {
         this.listEvents = response.data.items;
         this.listEventsHeaderDate = Object.keys(this.listEvents);
-        console.log(`this.listEvents`, this.listEvents);
-        console.log(`this.listEventsHeaderDate`, this.listEventsHeaderDate);
       });
-
   }
 
 }

@@ -1,3 +1,6 @@
+$cardHeight: 384px;
+$cardImageHeight: 180px;
+
 .wrapper-list-events {
   .event {
     .date-header {
@@ -11,12 +14,21 @@
     }
 
     .events-by-date {
-      display: flex;
-      flex-wrap: wrap;
+      padding: 12px;
 
       .card {
-        max-width: 400px;
-        margin: 0 12px;
+        height: $cardHeight;
+        margin-bottom: 12px;
+
+        &.no-image {
+          height: calc(#{$cardHeight} - #{$cardImageHeight}) !important;
+        }
+
+        .card-image {
+          height: $cardImageHeight;
+          background-position: top center;
+          background-size: cover;
+        }
       }
     }
   }
