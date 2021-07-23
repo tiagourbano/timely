@@ -1,0 +1,21 @@
+<div class="wrapper-list-events">
+  <div class="event" *ngFor="let headerDate of listEventsHeaderDate;">
+    <div class="date-header">
+      {{ headerDate | date: 'longDate' }}
+    </div>
+
+    <div class="events-by-date">
+      <mat-card
+        class="card"
+        *ngFor="let event of listEvents[headerDate];"
+      >
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p class="title">{{ event.title }}</p>
+          <p class="date">{{ event.start_datetime }}</p>
+          <p class="description">{{ event.description_short }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
