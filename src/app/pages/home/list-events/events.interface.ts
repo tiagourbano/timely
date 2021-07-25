@@ -7,6 +7,6 @@ export interface IEvents {
     has_prior: boolean,
     size: number,
     total: number,
-    items: IItemEvent[],
+    items?: IItemEvent,
   }
 };

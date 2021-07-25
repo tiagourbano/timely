@@ -11,18 +11,28 @@ import { IItemEvent } from './item-event.interface';
 })
 export class ListEventsComponent implements OnInit {
 
-  public listEvents: IItemEvent[];
-  public listEventsHeaderDate: string[] = [];
+  public listEvents: IItemEvent;
+  public listEventsHeaderDate: string[];
 
-  constructor(private listEventsService: ListEventsService) {}
+  constructor(private listEventsService: ListEventsService) {
+    this.listEvents = {};
+    this.listEventsHeaderDate = [];
+  }
 
-  ngOnInit() {
+  private getEventList(): void {
     this.listEventsService
       .getEventsByCalendarId('54705442')
       .subscribe((response) => {
         this.listEvents = response.data.items;
-        this.listEventsHeaderDate = Object.keys(this.listEvents);
+
+        if (this.listEvents) {
+          this.listEventsHeaderDate = Object.keys(this.listEvents);
+        }
       });
+  }
+
+  public ngOnInit(): void {
+    this.getEventList();
   }
 
 }
