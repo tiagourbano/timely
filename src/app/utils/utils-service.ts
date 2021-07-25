@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 
 export class UtilsService {
-  static buildQueryParams(source: Object): HttpParams {
+  public static buildQueryParams(source: Object): HttpParams {
       let target: HttpParams = new HttpParams();
       Object.keys(source).forEach((key: string) => {
           const value: string | number | boolean | Date = source[key];
