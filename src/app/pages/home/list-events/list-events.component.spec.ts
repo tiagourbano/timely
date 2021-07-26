@@ -1,7 +1,8 @@
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { Observable, of } from 'rxjs';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatCardModule } from '@angular/material';
 
 import { ListEventsComponent } from './list-events.component';
@@ -18,29 +19,21 @@ let dataEvents: IEvents = {
     total: null,
   }
 };
-class ListEventsServiceMock {
-  public getEventsByCalendarId(): Observable<IEvents> {
-    return of(dataEvents);
-  }
-}
 
 describe('ListEventsComponent', () => {
   describe('Unit tests', () => {
     let component: ListEventsComponent;
     let fixture: ComponentFixture<ListEventsComponent>;
+    let listEventsService: ListEventsService;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
+        imports: [HttpClientTestingModule],
         declarations: [
           ListEventsComponent,
           SafeHtmlPipe
         ],
-        providers: [
-          {
-            provide: ListEventsService,
-            useClass: ListEventsServiceMock
-          },
-        ],
+        providers: [ListEventsService],
         schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
     }));
@@ -52,6 +45,8 @@ describe('ListEventsComponent', () => {
     });
 
     beforeEach(() => {
+      listEventsService = TestBed.get(ListEventsService);
+
       dataEvents = {
         data: {
           total: 2408,
@@ -146,49 +141,46 @@ describe('ListEventsComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('should call getEventList', () => {
-      const spyGetEventList = spyOn<any>(component, 'getEventList');
+    it('should call initSubscriptions', () => {
+      const spyInitSubscriptions = spyOn<any>(component, 'initSubscriptions');
 
       component.ngOnInit();
 
-      expect(spyGetEventList).toHaveBeenCalled();
+      expect(spyInitSubscriptions).toHaveBeenCalled();
     });
 
     it('should not empty listEvents', () => {
-      component.ngOnInit();
+      spyOn<any>(listEventsService, 'getEvents').and.returnValue(of(dataEvents));
+
+      listEventsService['dateSource'].next(new Date());
 
       expect(component.listEvents).not.toEqual({});
     });
 
-    it('should not be empty listEvents, listEventsHeaderDate after init', () => {
-      component.ngOnInit();
+    it('should not be empty listEvents if the user do not pass a date', () => {
+      spyOn<any>(listEventsService, 'getEvents').and.returnValue(of(dataEvents));
 
-      const listEvents = component.listEvents;
-      const listEventsHeaderDate = component.listEventsHeaderDate;
+      listEventsService['dateSource'].next(null);
 
-      expect(listEvents).not.toEqual({});
-      expect(listEventsHeaderDate).not.toEqual([]);
+      expect(component.listEvents).not.toEqual({});
     });
   });
 
   describe('Component Test', () => {
     let fixture: ComponentFixture<ListEventsComponent>;
+    let listEventsService: ListEventsService;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
+        imports: [
+          HttpClientTestingModule,
+          MatCardModule,
+        ],
         declarations: [
           ListEventsComponent,
           SafeHtmlPipe
         ],
-        imports: [
-          MatCardModule,
-        ],
-        providers: [
-          {
-            provide: ListEventsService,
-            useClass: ListEventsServiceMock
-          }
-        ],
+        providers: [ListEventsService],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       }).compileComponents();
     }));
@@ -199,6 +191,8 @@ describe('ListEventsComponent', () => {
     });
 
     beforeEach(() => {
+      listEventsService = TestBed.get(ListEventsService);
+
       dataEvents = {
         data: {
           total: 2408,
@@ -296,9 +290,15 @@ describe('ListEventsComponent', () => {
         expect(wrapperListEvent).toBeTruthy();
       });
 
-      it('should render 1 event card', () => {
-        const matCards = fixture.debugElement.queryAll(By.css('mat-card'));
-        expect(matCards.length).toBe(1);
+      it('should render 1 event card', async () => {
+        spyOn<any>(listEventsService, 'getEvents').and.returnValue(of(dataEvents));
+        listEventsService['dateSource'].next(new Date());
+
+        fixture.detectChanges();
+        await fixture.whenStable().then(() => {
+          const matCards = fixture.debugElement.queryAll(By.css('mat-card'));
+          expect(matCards.length).toBe(1);
+        });
       });
     });
   });

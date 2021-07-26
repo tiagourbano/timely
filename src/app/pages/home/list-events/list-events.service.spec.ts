@@ -5,8 +5,7 @@ import { of } from 'rxjs';
 import { ListEventsService } from './list-events.service';
 import { UtilsService } from './../../../utils/utils-service';
 import { IEvents } from './events.interface';
-
-
+import { EventParams } from './event-params.interface';
 
 describe('ListEventsService', () => {
   let listEventsService: ListEventsService;
@@ -36,20 +35,21 @@ describe('ListEventsService', () => {
     it('should call UtilsService', inject([UtilsService], () => {
       const utilService = spyOn<any>(UtilsService, 'buildQueryParams');
 
-      listEventsService.getEventsByCalendarId('1');
+      listEventsService.getEvents({id: '1', date: '2021-07-25'} as EventParams);
 
       expect(utilService).toHaveBeenCalled();
     }));
 
-    describe('On calling the getEventsByCalendarId method', () => {
+    describe('On calling the getEvents method', () => {
       let baseUrl: string;
       let requestUrl: string;
       const calendarId: string = '54705442';
+      const currentDate: string = new Date().toISOString().slice(0, 10);
       let dataEvents: IEvents;
 
       beforeEach(() => {
         baseUrl = `https://timelyapp.time.ly/api/calendars`;
-        requestUrl = `${baseUrl}/${calendarId}/events?group_by_date=1&start_date=2021-07-23&per_page=30&page=1`;
+        requestUrl = `${baseUrl}/${calendarId}/events?group_by_date=1&start_date=${currentDate}&per_page=30&page=1`;
         dataEvents = {
           data: {
             total: 2408,
@@ -143,7 +143,20 @@ describe('ListEventsService', () => {
       it('should make a http request with the correct url and parameters', fakeAsync(() => {
         let httpTestRequest: TestRequest;
 
-        listEventsService.getEventsByCalendarId('54705442').toPromise();
+        listEventsService.getEvents({ id: '54705442', date: currentDate } as EventParams).toPromise();
+
+        httpTestRequest = httpTestingController.expectOne(requestUrl);
+        expect(httpTestRequest.request.method).toEqual('GET');
+        expect(httpTestRequest.request.urlWithParams).toEqual(requestUrl);
+
+        httpTestRequest.flush({});
+        tick();
+      }));
+
+      it('should make a http request with current date if the user do not pass date', fakeAsync(() => {
+        let httpTestRequest: TestRequest;
+
+        listEventsService.getEvents({ id: '54705442' } as EventParams).toPromise();
 
         httpTestRequest = httpTestingController.expectOne(requestUrl);
         expect(httpTestRequest.request.method).toEqual('GET');
@@ -154,17 +167,28 @@ describe('ListEventsService', () => {
       }));
 
       it('should make a http request and return the events data', (done: Function) => {
-        const spyListEventsService = spyOn<any>(listEventsService, 'getEventsByCalendarId').and
+        const spyListEventsService = spyOn<any>(listEventsService, 'getEvents').and
           .callFake(() => of(dataEvents));
 
         listEventsService
-          .getEventsByCalendarId('54705442')
+          .getEvents({ id: '54705442', date: currentDate } as EventParams)
           .subscribe((response: IEvents) => {
             expect(Object.keys(response.data.items).length).toEqual(1);
             expect(spyListEventsService).toHaveBeenCalled();
 
             done();
           });
+      });
+    });
+
+    describe('On calling changeDate method', () => {
+      it('should call dateSource BehaviorSubject', () => {
+        const currentDate = new Date();
+        const dateSourceSpy = spyOn<any>(listEventsService['dateSource'], 'next');
+
+        listEventsService.changeDate(currentDate);
+
+        expect(dateSourceSpy).toHaveBeenCalledWith(currentDate);
       });
     });
   });

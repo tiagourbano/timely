@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { ListEventsService } from './list-events.service';
 import { IItemEvent } from './item-event.interface';
@@ -9,7 +10,9 @@ import { IItemEvent } from './item-event.interface';
   templateUrl: './list-events.component.html',
   styleUrls: ['./list-events.component.scss']
 })
-export class ListEventsComponent implements OnInit {
+export class ListEventsComponent implements OnInit, OnDestroy {
+
+  private dateSubscription: Subscription;
 
   public listEvents: IItemEvent;
   public listEventsHeaderDate: string[];
@@ -19,9 +22,9 @@ export class ListEventsComponent implements OnInit {
     this.listEventsHeaderDate = [];
   }
 
-  private getEventList(): void {
+  private getEventList(date: string): void {
     this.listEventsService
-      .getEventsByCalendarId('54705442')
+      .getEvents({ id: '54705442', date  })
       .subscribe((response) => {
         this.listEvents = response.data.items;
 
@@ -31,8 +34,17 @@ export class ListEventsComponent implements OnInit {
       });
   }
 
-  public ngOnInit(): void {
-    this.getEventList();
+  private initSubscriptions(): void {
+    this.dateSubscription = this.listEventsService.currentDate.subscribe((date: Date) => {
+      this.getEventList(new Date(date).toISOString().slice(0, 10));
+    });
   }
 
+  public ngOnInit(): void {
+    this.initSubscriptions();
+  }
+
+  public ngOnDestroy() {
+    this.dateSubscription.unsubscribe();
+  }
 }
