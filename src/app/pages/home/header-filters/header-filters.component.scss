@@ -1,0 +1,24 @@
+.wrapper-header-filters {
+  margin-bottom: 12px;
+  padding: 12px;
+  box-sizing: border-box;
+  background-color: #223e49;
+}
+
+$timely-green: #7eba4a;
+::ng-deep .mat-form-field-label,
+::ng-deep .mat-datepicker-toggle,
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline,
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick,
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label,
+::ng-deep input.mat-input-element {
+  color: $timely-green;
+}
+
+::ng-deep .mat-input-element {
+  caret-color: $timely-green;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  padding: 0;
+}

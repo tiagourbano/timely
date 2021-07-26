@@ -1,0 +1,17 @@
+<div class="wrapper-header-filters" fxLayout="row" fxLayoutAlign="end center">
+  <mat-form-field appearance="outline">
+    <mat-label>Start Date</mat-label>
+
+    <input
+      matInput
+      [matDatepicker]="picker"
+      (dateChange)="selectedDate($event)"
+      [value]="startDate"
+    />
+
+    <mat-datepicker-toggle matSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
