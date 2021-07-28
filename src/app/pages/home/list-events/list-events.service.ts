@@ -3,9 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { UtilsService } from './../../../utils/utils-service';
-import { SearchEventParams } from './search-event-params.interface';
-import { IEvents } from './events.interface';
-import { EventParams } from './event-params.interface';
+import { SearchEventParams } from './interfaces/search-event-params.interface';
+import { IEvents } from './interfaces/events.interface';
+import { EventParams } from './interfaces/event-params.interface';
 
 @Injectable({
   providedIn: 'root'

@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material';
 import { ListEventsComponent } from './list-events.component';
 import { SafeHtmlPipe } from './../../../pipes/safe-html.pipe';
 import { ListEventsService } from './list-events.service';
-import { IEvents } from './events.interface';
+import { IEvents } from './interfaces/events.interface';
 
 let dataEvents: IEvents = {
   data: {

@@ -4,8 +4,8 @@ import { of } from 'rxjs';
 
 import { ListEventsService } from './list-events.service';
 import { UtilsService } from './../../../utils/utils-service';
-import { IEvents } from './events.interface';
-import { EventParams } from './event-params.interface';
+import { IEvents } from './interfaces/events.interface';
+import { EventParams } from './interfaces/event-params.interface';
 
 describe('ListEventsService', () => {
   let listEventsService: ListEventsService;

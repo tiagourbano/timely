@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ListEventsService } from './list-events.service';
-import { IItemEvent } from './item-event.interface';
-import { IEvents } from './events.interface';
+import { IItemEvent } from './interfaces/item-event.interface';
+import { IEvents } from './interfaces/events.interface';
 
 @Component({
   selector: 'app-list-events',
