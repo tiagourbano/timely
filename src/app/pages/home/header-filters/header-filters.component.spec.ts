@@ -86,7 +86,6 @@ describe('HeaderFiltersComponent', () => {
       const datePickerValue = new Date(datePickerRawValue).toISOString().slice(0, 10);
       const currentDate = new Date().toISOString().slice(0, 10);
 
-
       expect(datePickerComponent).toBeTruthy();
       expect(datePickerValue).toEqual(currentDate);
     });

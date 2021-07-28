@@ -16,7 +16,6 @@ describe('SafeHtmlPipe', () => {
     pipe = new SafeHtmlPipe(domSanitizer);
   }));
 
-
   it('create an instance', () => {
     expect(pipe).toBeTruthy();
   });

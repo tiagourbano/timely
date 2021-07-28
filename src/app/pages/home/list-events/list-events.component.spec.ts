@@ -55,49 +55,49 @@ describe('ListEventsComponent', () => {
           has_prior: false,
           has_next: true,
           items: {
-            "2020-08-13": [{
-              cost_display: "0",
+            '2020-08-13': [{
+              cost_display: '0',
               images: [{
                 id: null,
-                title: "-",
+                title: '-',
                 sizes: {
                 full: {
-                  url: "https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png",
+                  url: 'https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png',
                   width: null,
                   height: null
                   },
                 medium: {
-                  url: "https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png",
+                  url: 'https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png',
                   width: null,
                   height: null
                   },
                 small: {
-                  url: "https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png",
+                  url: 'https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png',
                   width: null,
                   height: null
                   },
                 thumbnail: {
-                  url: "https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png",
+                  url: 'https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png',
                   width: null,
                   height: null
                   }
                 }
               }],
-            instance: "20200813000000",
+            instance: '20200813000000',
             cost_external_url: null,
             calendar_id: 54705442,
-            start_datetime: "2020-08-13 00:00:00",
-            end_datetime: "2021-08-13 23:59:59",
+            start_datetime: '2020-08-13 00:00:00',
+            end_datetime: '2021-08-13 23:59:59',
             cost_type: null,
-            timezone: "UTC",
+            timezone: 'UTC',
             post_to_twitter: false,
             post_to_facebook: false,
-            title: "Book Talk with Author Meryl Ain",
+            title: 'Book Talk with Author Meryl Ain',
             is_example_event: false,
             feed_id: 54720031,
-            uid: "ai1ec-18666@goldcoastarts.org",
+            uid: 'ai1ec-18666@goldcoastarts.org',
             allday: true,
-            description_short: "\ufeff\n\nSYNOPSIS\n\nWith the cloud of the Holocaust still looming over them, twin sisters Brooks and Johanna Lubinski and their parents arrive in the US from a Displaced Persons Camp. In the years after WWII&hellip;",
+            description_short: '\ufeff\n\nSYNOPSIS\n\nWith the cloud the over them WWII&hellip;',
             taxonomies: {
                 taxonomy_venue: [{
                   country: null,
@@ -109,15 +109,15 @@ describe('ListEventsComponent', () => {
                   address2: null,
                   city: null,
                   timezone: null,
-                  item_type: "taxonomy_venue",
+                  item_type: 'taxonomy_venue',
                   phone2: null,
-                  created_at: "2021-06-14 15:18:12",
-                  title: "Online Special Event",
+                  created_at: '2021-06-14 15:18:12',
+                  title: 'Online Special Event',
                   deleted_at: null,
                   country_first_division: null,
-                  updated_at: "2021-06-14 15:18:12",
+                  updated_at: '2021-06-14 15:18:12',
                   phone: null,
-                  venue_type: "O",
+                  venue_type: 'O',
                   id: 678095972,
                   image_id: null,
                   postal_code: null,
@@ -127,10 +127,10 @@ describe('ListEventsComponent', () => {
               },
               id: 66930351,
               user: null,
-              event_status: "confirmed",
-              custom_url: "meryl-ain",
-              url: "https:\/\/calendar.time.ly\/6a37fb6n\/event\/66930351\/20200813000000",
-              canonical_url: "https:\/\/calendar.time.ly\/6a37fb6n\/event\/66930351"
+              event_status: 'confirmed',
+              custom_url: 'meryl-ain',
+              url: 'https:\/\/calendar.time.ly\/6a37fb6n\/event\/66930351\/20200813000000',
+              canonical_url: 'https:\/\/calendar.time.ly\/6a37fb6n\/event\/66930351'
             }]
           }
         }
@@ -201,49 +201,49 @@ describe('ListEventsComponent', () => {
           has_prior: false,
           has_next: true,
           items: {
-            "2020-08-13": [{
-              cost_display: "0",
+            '2020-08-13': [{
+              cost_display: '0',
               images: [{
                 id: null,
-                title: "-",
+                title: '-',
                 sizes: {
                 full: {
-                  url: "https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png",
+                  url: 'https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png',
                   width: null,
                   height: null
                   },
                 medium: {
-                  url: "https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png",
+                  url: 'https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png',
                   width: null,
                   height: null
                   },
                 small: {
-                  url: "https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png",
+                  url: 'https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png',
                   width: null,
                   height: null
                   },
                 thumbnail: {
-                  url: "https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png",
+                  url: 'https:\/\/goldcoastarts.org\/wp-content\/uploads\/2020\/07\/Meryl-Ain.png',
                   width: null,
                   height: null
                   }
                 }
               }],
-            instance: "20200813000000",
+            instance: '20200813000000',
             cost_external_url: null,
             calendar_id: 54705442,
-            start_datetime: "2020-08-13 00:00:00",
-            end_datetime: "2021-08-13 23:59:59",
+            start_datetime: '2020-08-13 00:00:00',
+            end_datetime: '2021-08-13 23:59:59',
             cost_type: null,
-            timezone: "UTC",
+            timezone: 'UTC',
             post_to_twitter: false,
             post_to_facebook: false,
-            title: "Book Talk with Author Meryl Ain",
+            title: 'Book Talk with Author Meryl Ain',
             is_example_event: false,
             feed_id: 54720031,
-            uid: "ai1ec-18666@goldcoastarts.org",
+            uid: 'ai1ec-18666@goldcoastarts.org',
             allday: true,
-            description_short: "\ufeff\n\nSYNOPSIS\n\nWith the cloud of the Holocaust still looming over them, twin sisters Brooks and Johanna Lubinski and their parents arrive in the US from a Displaced Persons Camp. In the years after WWII&hellip;",
+            description_short: '\ufeff\n\nSYNOPSIS\n\nWith the cloud the over them WWII&hellip;',
             taxonomies: {
                 taxonomy_venue: [{
                   country: null,
@@ -255,15 +255,15 @@ describe('ListEventsComponent', () => {
                   address2: null,
                   city: null,
                   timezone: null,
-                  item_type: "taxonomy_venue",
+                  item_type: 'taxonomy_venue',
                   phone2: null,
-                  created_at: "2021-06-14 15:18:12",
-                  title: "Online Special Event",
+                  created_at: '2021-06-14 15:18:12',
+                  title: 'Online Special Event',
                   deleted_at: null,
                   country_first_division: null,
-                  updated_at: "2021-06-14 15:18:12",
+                  updated_at: '2021-06-14 15:18:12',
                   phone: null,
-                  venue_type: "O",
+                  venue_type: 'O',
                   id: 678095972,
                   image_id: null,
                   postal_code: null,
@@ -273,10 +273,10 @@ describe('ListEventsComponent', () => {
               },
               id: 66930351,
               user: null,
-              event_status: "confirmed",
-              custom_url: "meryl-ain",
-              url: "https:\/\/calendar.time.ly\/6a37fb6n\/event\/66930351\/20200813000000",
-              canonical_url: "https:\/\/calendar.time.ly\/6a37fb6n\/event\/66930351"
+              event_status: 'confirmed',
+              custom_url: 'meryl-ain',
+              url: 'https:\/\/calendar.time.ly\/6a37fb6n\/event\/66930351\/20200813000000',
+              canonical_url: 'https:\/\/calendar.time.ly\/6a37fb6n\/event\/66930351'
             }]
           }
         }

@@ -11,13 +11,13 @@ import { EventParams } from './event-params.interface';
   providedIn: 'root'
 })
 export class ListEventsService {
-  private dateSource: BehaviorSubject<Date>;
-  public currentDate: Observable<Date>;
 
   constructor(private httpClient: HttpClient) {
     this.dateSource = new BehaviorSubject(new Date());
     this.currentDate = this.dateSource.asObservable();
   }
+  public currentDate: Observable<Date>;
+  private dateSource: BehaviorSubject<Date>;
 
   public getEvents(params: EventParams): Observable<IEvents> {
     const eventParams: SearchEventParams = {
@@ -36,7 +36,7 @@ export class ListEventsService {
       );
   }
 
-  public changeDate(date: Date) {
+  public changeDate(date: Date): void {
     this.dateSource.next(date);
   }
 

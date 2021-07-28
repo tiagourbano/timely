@@ -9,6 +9,7 @@ export class UtilsService {
               target = target.append(key, value.toString());
           }
       });
+
       return target;
   }
 }

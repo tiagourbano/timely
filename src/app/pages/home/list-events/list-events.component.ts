@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { ListEventsService } from './list-events.service';
 import { IItemEvent } from './item-event.interface';
-
+import { IEvents } from './events.interface';
 
 @Component({
   selector: 'app-list-events',
@@ -12,20 +12,28 @@ import { IItemEvent } from './item-event.interface';
 })
 export class ListEventsComponent implements OnInit, OnDestroy {
 
-  private dateSubscription: Subscription;
-
-  public listEvents: IItemEvent;
-  public listEventsHeaderDate: string[];
-
   constructor(private listEventsService: ListEventsService) {
     this.listEvents = {};
     this.listEventsHeaderDate = [];
   }
 
+  public listEvents: IItemEvent;
+  public listEventsHeaderDate: string[];
+
+  private dateSubscription: Subscription;
+
+  public ngOnInit(): void {
+    this.initSubscriptions();
+  }
+
+  public ngOnDestroy(): void {
+    this.dateSubscription.unsubscribe();
+  }
+
   private getEventList(date: string): void {
     this.listEventsService
       .getEvents({ id: '54705442', date  })
-      .subscribe((response) => {
+      .subscribe((response: IEvents) => {
         this.listEvents = response.data.items;
 
         if (this.listEvents) {
@@ -38,13 +46,5 @@ export class ListEventsComponent implements OnInit, OnDestroy {
     this.dateSubscription = this.listEventsService.currentDate.subscribe((date: Date) => {
       this.getEventList(new Date(date).toISOString().slice(0, 10));
     });
-  }
-
-  public ngOnInit(): void {
-    this.initSubscriptions();
-  }
-
-  public ngOnDestroy() {
-    this.dateSubscription.unsubscribe();
   }
 }

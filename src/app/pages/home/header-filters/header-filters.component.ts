@@ -13,8 +13,9 @@ export class HeaderFiltersComponent {
   public constructor(private listEventsService: ListEventsService) {}
 
   public selectedDate(event: MatDatepickerInputEvent<Date>): void {
-    if (event.value !instanceof Date) {
+    if (event.value instanceof Date) {
       this.listEventsService.changeDate(event.value);
+
       return;
     }
 
